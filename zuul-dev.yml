@@ -30,23 +30,6 @@ ribbon:
 #  read-timeout: 60000
 #  connect-timeout: 60000
 
-# Spring Security配置
-security:
-  basic:
-    # 是否开启基本的认证，默认为true
-    enabled: false
-  oauth2:
-    client:
-      # 指定获取access token的url
-      access-token-uri: http://localhost:8760/uaa/oauth/token
-      # 用户跳转去获取access token的url
-      user-authorization-uri: http://localhost:8760/uaa/oauth/authorize
-    resource:
-      # 指定user info的url
-      user-info-uri: http://localhost:8760/uaa/user
-      # 是否使用token info，默认为true
-      prefer-token-info: false
-
 # Zuul
 zuul:
   routes:
