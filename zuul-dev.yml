@@ -1,0 +1,60 @@
+# Zuul filter order
+order:
+  AccessFilter: 0
+foo: 1234
+
+# eureka.instance.status-page-url
+status-page-url:
+  suffix: 8760/swagger-ui.html
+
+# 服务端口
+server:
+  port: 8760
+
+# 服务名
+spring:
+  application:
+    name: zuul
+
+# Eureka
+eureka:
+  client:
+    # 刷新本地缓存时间，默认30s
+    registry-fetch-interval-seconds: 1
+
+# Ribbon
+ribbon:
+  # Ribbon缓存刷新时间，默认为30秒
+  ServerListRefreshInterval: 1000
+  # 需考虑降低Ribbon的读取与连接超时上限
+#  read-timeout: 60000
+#  connect-timeout: 60000
+
+# Spring Security配置
+security:
+  basic:
+    # 是否开启基本的认证，默认为true
+    enabled: false
+  oauth2:
+    client:
+      # 指定获取access token的url
+      access-token-uri: http://localhost:8760/uaa/oauth/token
+      # 用户跳转去获取access token的url
+      user-authorization-uri: http://localhost:8760/uaa/oauth/authorize
+    resource:
+      # 指定user info的url
+      user-info-uri: http://localhost:8760/uaa/user
+      # 是否使用token info，默认为true
+      prefer-token-info: false
+
+# Zuul
+zuul:
+  routes:
+    test1:
+      path: /test1/**
+      serviceId: test1
+  add-host-header: true
+  sensitive-headers: 
+  host:
+    connect-timeout-millis: 10000
+    socket-timeout-millis: 60000
